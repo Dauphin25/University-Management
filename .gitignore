@@ -6,3 +6,6 @@
 # Ignore IDE directories 
 .idea/ 
 .vscode/ 
+
+# Ignore migrations directory
+*/migrations/

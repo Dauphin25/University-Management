@@ -1,0 +1,8 @@
+# Ignore compiled files 
+*.class 
+*.o 
+*.pyc 
+ 
+# Ignore IDE directories 
+.idea/ 
+.vscode/ 

@@ -12,6 +12,7 @@ class Subject(models.Model):
     professor = models.ForeignKey('management.Professor', on_delete=models.CASCADE, verbose_name=_('Professor'), default=None)
     syllabus = models.FileField(upload_to='syllabus/', verbose_name=_('Syllabus'), blank=True, null=True,
                                 validators=[FileExtensionValidator(['pdf'])])
+    prerequisites = models.ManyToManyField('self', blank=True, verbose_name='Prerequisites')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

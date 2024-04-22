@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ავტორიზაცია
+    <form method="post">
+        {% csrf_token %}
+        <div class="fon10 ">
+            <div class="login_form__div">
+                <div class="register__span">
+                    შესვლა
+                </div>
+                <div class="form__input">
+                    {{ form_user_login.username }}
+                </div>
+                <div class="form__input">
+                    {{ form_user_login.password }}
+                </div>
+                <button class="login__but" type="" sublit>შესვლა</button>
+            </div>
+        </div>
+    </form>
+
+<br>
+
+
+
+
+{% endblock %}

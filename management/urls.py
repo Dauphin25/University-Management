@@ -1,3 +1,4 @@
+
 from django.urls import path
 from .views.kopaliani import *
 from .views.views import get_students, get_student, get_faculties, get_faculty
@@ -14,3 +15,15 @@ urlpatterns = [
     path('user_logout/', user_logout, name='user_logout'),
     path('takingsabject/', takingsabject, name='takingsabject'),
 ]
+=======
+# management/urls.py
+from django.urls import path
+from management.views.log_in import login_view
+
+app_name = 'management'
+urlpatterns = [
+    # Define your URL patterns here
+    path('login/', login_view, name='login'),  # Change 'login' to the name of your login URL pattern
+    # Other URL patterns
+]
+

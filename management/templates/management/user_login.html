@@ -2,13 +2,12 @@
 {% load static %}
 
 {% block content %}
-ავტორიზაცია
     <form method="post">
         {% csrf_token %}
         <div class="fon10 ">
             <div class="login_form__div">
                 <div class="register__span">
-                    შესვლა
+                    Log in
                 </div>
                 <div class="form__input">
                     {{ form_user_login.username }}
@@ -16,7 +15,7 @@
                 <div class="form__input">
                     {{ form_user_login.password }}
                 </div>
-                <button class="login__but" type="" sublit>შესვლა</button>
+                <button class="login__but" type="" sublit>Log in</button>
             </div>
         </div>
     </form>

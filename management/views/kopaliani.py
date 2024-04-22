@@ -33,9 +33,7 @@ def professor(request):
         form = Professor_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("დაემატა")
-        else:
-            return HttpResponse("შეცდომა")
+            return redirect('professor')
 
     else:
         professor = Professor.objects.all()
@@ -58,13 +56,9 @@ def sabject(request):
         form = Sabject_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("დაემატა")
-        else:
-            return HttpResponse("შეცდომა")
+            return redirect('sabject')
 
     else:
-        sabject = Subject.objects.all()
-        form = Sabject_form()
         sabject = Subject.objects.all()
         form = Sabject_form()
         context = {
@@ -86,9 +80,7 @@ def takingsabject(request):
             form = StudentSubject_form(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponse("დაემატა")
-            else:
-                return HttpResponse("შეცდომა")
+                return redirect('takingsabject')
 
         else:
             studentSubject = StudentSubject.objects.all()
@@ -107,8 +99,6 @@ class UserLoginForm(AuthenticationForm):
     password = fields.CharField()
     class Meta:
         model = User
-        # fields = ('username', 'email','password1','password2', 'first_name')
-    # pass
 
 
 def user_login(request):
@@ -117,7 +107,6 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            # messages.success(request,"თქვენ წარმატებით დარეგისტრირდით")
             return redirect('index')
     else:
         form = UserLoginForm()

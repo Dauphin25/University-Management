@@ -10,14 +10,14 @@
 </head>
 <header>
   <nav class="navbar">
-    <a href="{% url 'index' %}" class="nav-button">მთავარი</a>
+    <a href="{% url 'index' %}" class="nav-button">Main</a>
       {% if request.user.is_authenticated %}
 				<div class="nav--login nav--but" >
 					<a href="{% url 'user_logout' %}"><div class="nav-button"> {{ request.user.username }}
-                        გასვლა</div></a>
+                        Log out</div></a>
 				</div>
       {% else %}
-    <a href="{% url 'user_login' %}" class="nav-button">შესვლა</a>
+    <a href="{% url 'user_login' %}" class="nav-button">Log in</a>
 
 {% endif %}
 
@@ -29,19 +29,19 @@
 
         <div class="filterDivs">
                 <a class="filterItem"  href="{% url 'professor' %}">
-                    პროფესორების ბაზა
+                    Profesor's Database
                 </a>
                 <a class="filterItem"  href="{% url 'get_students' %}">
-                    სტუდენტების ბაზა
+                    Student's Database
                 </a>
                 <a class="filterItem"  href="{% url 'get_faculties' %}">
-                    ფაკულტეტების ბაზა
+                    Course's Database
                 </a>
                 <a class="filterItem"  href="{% url 'sabject' %}">
-                    საგნების ბაზა
+                    Subject's Database
                 </a>
                 <a class="filterItem"  href="{% url 'takingsabject' %}">
-                    საგნის არჩევა
+                    Choose subjects
                 </a>
           </div>
 

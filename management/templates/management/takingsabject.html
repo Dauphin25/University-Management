@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="centralDiv">
-    ჩემი საგნები
+    My subjects
     <table>
             <tr>
                 <th>student</th>
@@ -21,7 +21,7 @@
         <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="დამატება">
+        <input type="submit" value="Add">
         </form>
     </div>
 </div>

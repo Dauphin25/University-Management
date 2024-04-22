@@ -124,7 +124,7 @@
             </li>
             {% endfor %}
         </ul>
-    <form method="post", enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Save</button>

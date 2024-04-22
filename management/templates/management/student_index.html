@@ -2,11 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .student {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .student h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .student p {
+            color: #666;
+            margin: 5px 0;
+        }
+        .student p strong {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<div>
-
-</div>
+    <div class="container">
+        <h1>Students</h1>
+        <div class="student-list">
+            {% for student in students %}
+            <div class="student">
+                <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+                <p><strong>Email:</strong> {{ student.email }}</p>
+                <p><strong>Phone Number:</strong> {{ student.phone_number }}</p>
+                <p><strong>Born Date:</strong> {{ student.born_date }}</p>
+                <p><strong>GPA:</strong> {{ student.gpa }}</p>
+                <p><strong>Current Semester:</strong> {{ student.current_semester }}</p>
+                <p><strong>Faculty:</strong> {{ student.faculty }}</p>
+                <p><strong>Is Active:</strong> {{ student.is_active }}</p>
+                <p><strong>Created at:</strong> {{ student.created_at }}</p>
+                <p><strong>Updated at:</strong> {{ student.updated_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

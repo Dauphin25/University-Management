@@ -1,5 +1,5 @@
 from django.urls import path
-from ..views.views import get_student, get_students, get_faculty, get_faculties
+from management.views.views import get_student, get_students, get_faculty, get_faculties
 app_name = 'management'
 urlpatterns = [
     path('students/', get_students, name='get_students'),

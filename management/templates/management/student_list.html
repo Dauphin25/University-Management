@@ -120,7 +120,7 @@
         <ul>
             {% for student in students %}
             <li>
-                <a href="{% url 'management:get_student' student.pk %}">{{ student.first_name}}  {{ student.last_name }}</a>
+                <a href="{% url 'get_student' student.pk %}">{{ student.first_name}}  {{ student.last_name }}</a>
             </li>
             {% endfor %}
         </ul>
@@ -131,12 +131,12 @@
     </form>
         <ul>
             {% if students.has_next %}
-                <li><a href="{% url 'management:get_students' %}?page={{ students.next_page_number }}">Next</a></li>
+                <li><a href="{% url 'get_students' %}?page={{ students.next_page_number }}">Next</a></li>
             {% endif %}
         </ul>
         <ul>
             {% if students.has_previous %}
-                <li><a href="{% url 'management:get_students' %}?page={{ students.previous_page_number }}">Previous</a></li>
+                <li><a href="{% url 'get_students' %}?page={{ students.previous_page_number }}">Previous</a></li>
             {% endif %}
         </ul>
     </div>

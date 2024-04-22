@@ -1,0 +1,252 @@
+/*#45a049  mwvane*/
+/*#ff7817 stafilo*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+a {
+  text-decoration: none; /* Remove underlines */
+  color: #333; /* Set the link color */
+}
+
+
+header {
+  background-color:#007c04;
+  padding: 10px 0;
+  /*border: 1px solid white;*/
+
+}
+
+.navbar {
+  background-color: #ff6a00;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.603);
+  z-index: -500;
+  font-size: calc( 10vw / 15);
+}
+
+.nav-button {
+  background: -webkit-linear-gradient(to right, #2196F3, #00adef);
+    border-radius: 6px;
+    letter-spacing: 0.085em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 44px;
+    color: whitesmoke;
+  padding: 10px;
+    transition: all .3s ease;
+  font-weight: bold;
+  font-size: 20px;
+  /*border: 1px solid white;*/
+}
+
+.nav-button:hover {
+  /*background-color: #45a049; !* Darker background color on hover *!*/
+  transform: translateY(-1px);
+}
+
+.bodyDiv {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  width: 100%;
+}
+
+.leftDiv {
+border: 1px solid white;
+  width: 450px;
+  background-color: #e3dede;
+  padding: 10px;
+  height: 100%;
+}
+
+.centralDiv {
+  /*background-color: #fbf3f3;*/
+    /*padding: 15px;*/
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /*align-items: center;*/
+}
+
+.filterDivs{
+    /*background-color: #5bc0de;*/
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.filterItem{
+
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007c04;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+    margin-top:3px
+}
+
+.filterItem:hover{
+  background-color: #ff7817;
+  transform: translateX(5px);
+}
+
+.bookItemsAll{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  
+    padding: 10px;
+}
+
+.product {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 430px;
+  transition: background-color 0.8s, transform 0.2s;
+  margin: 5px;
+
+}
+
+.product:hover{
+  background-color: #007c04;
+  transform: translateY(5px);
+}
+
+.product img {
+  width: 222px;
+  height: 265px;
+  border-radius: 5px;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  color: #ff7817;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-to-cart {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 32px;
+  margin-top: 7px;
+}
+
+.add-to-cart:hover {
+  background-color: #ff6a00;
+}
+
+
+.productDescription{
+  margin-left: 300px;
+}
+
+.product-detail {
+  display: flex;
+  align-items: flex-start;
+  /*background-color: #f9f9f9;*/
+  /*border-radius: 10px;*/
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+  padding: 20px;
+}
+
+.product-detail img{
+  width: 620px;
+}
+
+
+.productDescription {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.productDescription p {
+  margin-bottom: 10px;
+}
+
+.desc-name {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.desc-price {
+  font-size: 25px;
+  color: #900;
+}
+
+.desc-added,
+.desc-category,
+.desc-author,
+.desc-count {
+  font-size: 20px;
+  color: #667;
+}
+
+.filtered_name{
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  color: #45a049;
+  /*font-weight: bold;*/
+  font-size: 20px;
+}
+
+
+.product-authors{
+
+  display: inline-block;
+  padding: 10px 20px;
+  /*background-color: #007c04;*/
+  color: #ff7817;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+    margin-top:3px
+}
+
+.product-authors:hover{
+  background-color: #ff7817;
+  color: #ffffff;
+  transform: translateY(1px);
+}
+
+.Total_Books{
+color: #ff7817;
+  /*margin-left: 150px;*/
+  /*font-weight: bold;*/
+  font-size: 20px;
+  padding: 5px;
+  padding-bottom: 20px;
+}

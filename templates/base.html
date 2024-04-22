@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<header>
+  <nav class="navbar">
+    <a href="{% url 'index' %}" class="nav-button">მთავარი</a>
+    <a href="{% url 'json_request' %}" class="nav-button">json request</a>
+    <a href="{% url 'json_request_with_serialization' %}" class="nav-button">json_request_with_serialization</a>
+    <a href="{% url 'json_request_with_values_list' %}" class="nav-button">json_request_with_values_list</a>
+    <a href="{% url 'json_request_with_serialization_framework' %}" class="nav-button">json_request_with_serialization_framework</a>
+  </nav>
+</header>
+<body>
+    <div class="bodyDiv">
+        <div class="leftDiv">
+            <h3>ფილტრი კატეგორია</h3>
+
+        <div class="filterDivs">
+                {% for categoryItem in category %}
+                <a class="filterItem"  href="{% url 'by_category' categoryItem.pk %}">
+                    {{ categoryItem.name }}
+                </a>
+                {% endfor %}
+          </div>
+
+            <h3>ფილტრი ავტორი</h3>
+        <div class="filterDivs">
+                {% for authorItem in author %}
+                <a class="filterItem" href="{% url 'by_author' authorItem.id %}">
+                    {{ authorItem.name }}
+                </a>
+
+                {% endfor %}
+
+          </div>
+
+             <h3>დამატება</h3>
+        <div class="filterDivs">
+                    <a class="filterItem" href="{% url 'add_author' %}">
+                        ავტორის დამატება
+                    </a>
+                    <a class="filterItem" href="{% url 'add_book' %}">
+                        წიგნის დამატება
+                    </a>
+                    <a class="filterItem" href="{% url 'add_category' %}">
+                        კატეგორიის დამატება
+                    </a>
+                    <a class="filterItem" href="{% url 'test' %}">
+                        test button
+                    </a>
+
+          </div>
+
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

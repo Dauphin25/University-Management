@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<header>
+  <nav class="navbar">
+    <a href="{% url 'index' %}" class="nav-button">მთავარი</a>
+  </nav>
+</header>
+<body>
+    <div class="bodyDiv">
+        <div class="leftDiv">
+
+        <div class="filterDivs">
+                <a class="filterItem"  href="{% url 'professor' %}">
+                    პროფესორების ბაზა
+                </a>
+                <a class="filterItem"  href="{% url 'index' %}">
+                    სტუდენტების ბაზა
+                </a>
+                <a class="filterItem"  href="{% url 'sabject' %}">
+                    საგნების ბაზა
+                </a>
+                <a class="filterItem"  href="{% url 'index' %}">
+                    საგნის არჩევა
+                </a>
+          </div>
+
+
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

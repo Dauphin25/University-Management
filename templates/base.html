@@ -11,6 +11,16 @@
 <header>
   <nav class="navbar">
     <a href="{% url 'index' %}" class="nav-button">მთავარი</a>
+      {% if request.user.is_authenticated %}
+				<div class="nav--login nav--but" >
+					<a href="{% url 'user_logout' %}"><div class="nav-button"> {{ request.user.username }}
+                        გასვლა</div></a>
+				</div>
+      {% else %}
+    <a href="{% url 'user_login' %}" class="nav-button">შესვლა</a>
+
+{% endif %}
+
   </nav>
 </header>
 <body>
@@ -27,7 +37,7 @@
                 <a class="filterItem"  href="{% url 'sabject' %}">
                     საგნების ბაზა
                 </a>
-                <a class="filterItem"  href="{% url 'index' %}">
+                <a class="filterItem"  href="{% url 'takingsabject' %}">
                     საგნის არჩევა
                 </a>
           </div>

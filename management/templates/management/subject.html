@@ -1,9 +1,47 @@
 {% extends "base.html" %}
 
-
-
 {% block content %}
-    საწყისი გვერდი
+<div class="centralDiv">
+    საგნების ბაზა
+    <table>
+            <tr>
+                <th>title</th>
+                <th>faculty</th>
+                <th>number_of_credits</th>
+                <th>description</th>
+                <th>professor</th>
+                <th>syllabus</th>
+                <th>prerequisites</th>
+            </tr>
+        {% for item in sabject %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>
+                  {% for item in item.faculty.all %}
+                       {{ item.title }};
+                  {% endfor %}
+                </td>
+                <td>{{ item.number_of_credits }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.professor.first_name }} {{ item.professor.last_name }}</td>
+                <td>{{ item.syllabus }}</td>
+                <td>
+                {% for item in item.prerequisites.all %}
+                       {{ item.title }};
+                {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="createForm">
+        <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="დამატება">
+        </form>
+    </div>
+</div>
 
 {% endblock %}
 

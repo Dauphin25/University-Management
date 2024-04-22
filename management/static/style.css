@@ -72,10 +72,11 @@ border: 1px solid white;
 .centralDiv {
   /*background-color: #fbf3f3;*/
     /*padding: 15px;*/
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  flex-direction: column;
   /*align-items: center;*/
 }
 
@@ -109,6 +110,20 @@ border: 1px solid white;
     flex-direction: row;
     flex-wrap: wrap;  
     padding: 10px;
+}
+
+
+
+table,th {
+  background-color: #ff7c00;
+  border: 1px solid black;
+}
+
+table,td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 20px;
+  background-color: #45a049;
 }
 
 .product {

@@ -3,7 +3,37 @@
 
 
 {% block content %}
-    საწყისი გვერდი
+    <div class="centralDiv">
+    professor base
+    <table>
+            <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>university_email</th>
+                <th>phone_number</th>
+                <th>faculty</th>
+            </tr>
+        {% for item in professor %}
+            <tr>
+                <td>{{ item.first_name }}</td>
+                <td>{{ item.last_name }}</td>
+                <td>{{ item.university_email }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>{{ item.faculty }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <div class="createForm">
+        <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="დამატება">
+        </form>
+    </div>
+
+    </div>
 
 {% endblock %}
 

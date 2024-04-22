@@ -33,7 +33,8 @@ def professor(request):
         form = Professor_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("დაემატა")
+
+            return redirect("professor")
         else:
             return HttpResponse("შეცდომა")
 
@@ -58,7 +59,7 @@ def sabject(request):
         form = Sabject_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("დაემატა")
+            return redirect("sabject")
         else:
             return HttpResponse("შეცდომა")
 
@@ -77,28 +78,44 @@ def sabject(request):
 class StudentSubject_form(ModelForm):
     class Meta:
         model = StudentSubject
-        fields = '__all__'
+        fields = ('subject',)
 
 
 def takingsabject(request):
     if request.user.is_authenticated:
+        userId = 1
+        count = StudentSubject.objects.filter(student__pk=userId).count()
         if request.method == 'POST':
-            form = StudentSubject_form(request.POST)
+            if count == 7:
+                # raise forms.ValidationError("7 საგანი უკვე არჩეულია")
+                return HttpResponse("7 საგანი უკვე არჩეულია")
             if form.is_valid():
+                a = form.save(commit=False)
+                a.student = Student.objects.get(pk=userId)
                 form.save()
-                return HttpResponse("დაემატა")
+                return redirect('takingsabject')
             else:
                 return HttpResponse("შეცდომა")
 
         else:
-            studentSubject = StudentSubject.objects.all()
+            # HttpResponse(request.user.username)
+            studentSubject = StudentSubject.objects.filter(student__pk=1)
             form = StudentSubject_form()
             context = {
                 'studentSubject': studentSubject,
-                'form': form
+                'form': form,
+                'count': count,
             }
     else:
         return redirect('user_login')
+    return render(request, 'management/takingsabject.html', context)
+
+
+def takingsabjectall(request):
+    studentSubject = StudentSubject.objects.all()
+    context = {
+        'studentSubject': studentSubject,
+    }
     return render(request, 'management/takingsabject.html', context)
 
 

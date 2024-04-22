@@ -7,3 +7,4 @@
 .idea/ 
 .vscode/ 
 
+db.sqlite3/

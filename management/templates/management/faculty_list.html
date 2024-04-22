@@ -44,18 +44,18 @@
         <ul>
             {% for faculty in faculties %}
             <li>
-                <a href="{% url 'management:get_faculty' faculty.pk %}">{{ faculty.title }}</a>
+                <a href="{% url 'get_faculty' faculty.pk %}">{{ faculty.title }}</a>
             </li>
             {% endfor %}
         </ul>
         <ul>
             {% if faculties.has_next %}
-                <li><a href="{% url 'management:get_faculties' %}?page={{ faculties.next_page_number }}">Next</a></li>
+                <li><a href="{% url 'get_faculties' %}?page={{ faculties.next_page_number }}">Next</a></li>
             {% endif %}
         </ul>
         <ul>
             {% if faculties.has_previous %}
-                <li><a href="{% url 'management:get_faculties' %}?page={{ faculties.previous_page_number }}">Previous</a></li>
+                <li><a href="{% url 'get_faculties' %}?page={{ faculties.previous_page_number }}">Previous</a></li>
             {% endif %}
         </ul>
     </div>

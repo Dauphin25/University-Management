@@ -7,7 +7,7 @@ from management.models.student import Student
 
 def get_students(request):
     students = Student.objects.all()
-    paginator = Paginator(students, per_page=2)
+    paginator = Paginator(students, per_page=4)
     page_num = request.GET.get('page', 1)
     page: Page = paginator.get_page(page_num)
     if request.method == 'POST':

@@ -54,7 +54,7 @@
             {% endif %}
         </ul>
         <ul>
-            {% if students.has_previous %}
+            {% if faculties.has_previous %}
                 <li><a href="{% url 'management:get_faculties' %}?page={{ faculties.previous_page_number }}">Previous</a></li>
             {% endif %}
         </ul>

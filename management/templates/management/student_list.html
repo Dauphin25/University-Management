@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Student List</h1>
+    <div>
+        <ul>
+            {% for student in students %}
+            <li>
+                <a href="{% url 'management:get_student' student.pk %}">{{ student.first_name}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% if students.has_next %}
+                <li><a href="{% url 'management:get_students' %}?page={{ students.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+        <ul>
+            {% if students.has_previous %}
+                <li><a href="{% url 'management:get_students' %}?page={{ students.previous_page_number }}">Previous</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

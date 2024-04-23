@@ -83,24 +83,35 @@ class StudentSubject_form(ModelForm):
 
 def takingsabject(request):
     if request.user.is_authenticated:
-        userId = 1
+        if request.user.username == 'admin':
+            user_logout(request)
+            return redirect('takingsabject')
+        userId = request.user.first_name
         count = StudentSubject.objects.filter(student__pk=userId).count()
         if request.method == 'POST':
             if count == 7:
                 # raise forms.ValidationError("7 საგანი უკვე არჩეულია")
-                return HttpResponse("7 საგანი უკვე არჩეულია")
+                context = {
+                    'studentSubject': StudentSubject.objects.filter(student__pk=userId),
+                    'form': StudentSubject_form(),
+                    'count': '7 საგანი უკვე არჩეულია',
+                }
+                return render(request, 'management/takingsabject.html', context)
+
+            form = StudentSubject_form(data=request.POST)
             if form.is_valid():
                 a = form.save(commit=False)
                 a.student = Student.objects.get(pk=userId)
+                print(a.student.first_name)
                 form.save()
                 return redirect('takingsabject')
             else:
                 return HttpResponse("შეცდომა")
 
         else:
-            # HttpResponse(request.user.username)
-            studentSubject = StudentSubject.objects.filter(student__pk=1)
+            studentSubject = StudentSubject.objects.filter(student__pk=userId)
             form = StudentSubject_form()
+            count = 'სულ არჩეული საგნების ჯამი : ' + str(count)
             context = {
                 'studentSubject': studentSubject,
                 'form': form,
@@ -124,8 +135,6 @@ class UserLoginForm(AuthenticationForm):
     password = fields.CharField()
     class Meta:
         model = User
-        # fields = ('username', 'email','password1','password2', 'first_name')
-    # pass
 
 
 def user_login(request):
@@ -134,8 +143,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            # messages.success(request,"თქვენ წარმატებით დარეგისტრირდით")
-            return redirect('index')
+            return redirect('takingsabject')
     else:
         form = UserLoginForm()
     context = {

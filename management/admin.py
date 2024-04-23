@@ -8,6 +8,7 @@ from management.models.student import Student
 from management.models.subject import Subject
 from management.models.current_subject_list import CurrentSemesterSubject
 from management.models.subject_history import SubjectHistory
+from management.models.taking_subjects import  StudentSubject
 
 
 # Register your models here.
@@ -68,4 +69,8 @@ class SubjectHistoryAdmin(admin.ModelAdmin):
     search_fields = ('student', 'subject', 'semester', 'points')
     list_per_page = 20
     ordering = ('student', 'subject')
+
+@admin.register(StudentSubject)
+class StudentSubjectAdmin(admin.ModelAdmin):
+    list_display = ('student', 'subject')
 

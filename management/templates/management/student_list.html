@@ -124,11 +124,14 @@
             </li>
             {% endfor %}
         </ul>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <button type="submit">Save</button>
+</form>
         <ul>
             {% if students.has_next %}
                 <li><a href="{% url 'get_students' %}?page={{ students.next_page_number }}">Next</a></li>

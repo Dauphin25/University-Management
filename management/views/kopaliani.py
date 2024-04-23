@@ -33,7 +33,10 @@ def professor(request):
         form = Professor_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('professor')
+
+            return redirect("professor")
+        else:
+            return HttpResponse("შეცდომა")
 
     else:
         professor = Professor.objects.all()
@@ -56,9 +59,13 @@ def sabject(request):
         form = Sabject_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sabject')
+            return redirect("sabject")
+        else:
+            return HttpResponse("შეცდომა")
 
     else:
+        sabject = Subject.objects.all()
+        form = Sabject_form()
         sabject = Subject.objects.all()
         form = Sabject_form()
         context = {
@@ -71,26 +78,55 @@ def sabject(request):
 class StudentSubject_form(ModelForm):
     class Meta:
         model = StudentSubject
-        fields = '__all__'
+        fields = ('subject',)
 
 
 def takingsabject(request):
     if request.user.is_authenticated:
+        if request.user.username == 'admin':
+            user_logout(request)
+            return redirect('takingsabject')
+        userId = request.user.first_name
+        count = StudentSubject.objects.filter(student__pk=userId).count()
         if request.method == 'POST':
-            form = StudentSubject_form(request.POST)
+            if count == 7:
+                # raise forms.ValidationError("7 საგანი უკვე არჩეულია")
+                context = {
+                    'studentSubject': StudentSubject.objects.filter(student__pk=userId),
+                    'form': StudentSubject_form(),
+                    'count': '7 საგანი უკვე არჩეულია',
+                }
+                return render(request, 'management/takingsabject.html', context)
+
+            form = StudentSubject_form(data=request.POST)
             if form.is_valid():
+                a = form.save(commit=False)
+                a.student = Student.objects.get(pk=userId)
+                print(a.student.first_name)
                 form.save()
                 return redirect('takingsabject')
+            else:
+                return HttpResponse("შეცდომა")
 
         else:
-            studentSubject = StudentSubject.objects.all()
+            studentSubject = StudentSubject.objects.filter(student__pk=userId)
             form = StudentSubject_form()
+            count = 'სულ არჩეული საგნების ჯამი : ' + str(count)
             context = {
                 'studentSubject': studentSubject,
-                'form': form
+                'form': form,
+                'count': count,
             }
     else:
         return redirect('user_login')
+    return render(request, 'management/takingsabject.html', context)
+
+
+def takingsabjectall(request):
+    studentSubject = StudentSubject.objects.all()
+    context = {
+        'studentSubject': studentSubject,
+    }
     return render(request, 'management/takingsabject.html', context)
 
 
@@ -107,7 +143,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('index')
+            return redirect('takingsabject')
     else:
         form = UserLoginForm()
     context = {

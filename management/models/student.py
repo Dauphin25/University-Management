@@ -7,6 +7,9 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from management import choices
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.utils.translation import gettext_lazy as _
 
 
 class Student(models.Model):
@@ -22,6 +25,7 @@ class Student(models.Model):
     current_semester = models.IntegerField(verbose_name=_('Current Semester'), choices=choices.SEMESTER_CHOICES, default=0)
     faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name=_('Faculty'), default=None)
     is_active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='mediafiles/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -31,6 +35,10 @@ class Student(models.Model):
             email = f"{username}@tbc.edu.ge"
             self.email = email
         super().save(*args, **kwargs)
+        user = User.objects.create(username=(self.first_name + self.last_name))
+        user.password = make_password('User')
+        user.first_name = self.id
+        user.save()
 
     class Meta:
         db_table = 'student'

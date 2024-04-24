@@ -9,6 +9,8 @@ from management.models.subject import Subject
 from management.models.current_subject_list import CurrentSemesterSubject
 from management.models.subject_history import SubjectHistory
 from management.models.taking_subjects import  StudentSubject
+from management.models.assignment import Assignment
+from management.models.studentassignment import StudentAssignment
 
 
 # Register your models here.
@@ -74,3 +76,12 @@ class SubjectHistoryAdmin(admin.ModelAdmin):
 class StudentSubjectAdmin(admin.ModelAdmin):
     list_display = ('student', 'subject')
 
+@admin.register(Assignment)
+class AssignmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subject','professor')
+
+
+
+@admin.register(StudentAssignment)
+class StudentAssignmentAdmin(admin.ModelAdmin):
+    list_display = ('student', 'assignments','text')

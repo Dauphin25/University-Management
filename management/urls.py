@@ -13,4 +13,7 @@ urlpatterns = [
     path('user_login/', user_login, name='user_login'),
     path('user_logout/', user_logout, name='user_logout'),
     path('takingsabject/', takingsabject, name='takingsabject'),
+    path('addAssignment/', addAssignment, name='addAssignment'),
+    path('myAssighments/', myAssighments, name='myAssighments'),
+
 ]

@@ -32,9 +32,6 @@
                 <a class="filterItem"  href="{% url 'professor' %}">
                     Profesor's Database
                 </a>
-                <a class="filterItem"  href="{% url 'get_students' %}">
-                    Student's Database
-                </a>
                 <a class="filterItem"  href="{% url 'get_faculties' %}">
                     Course's Database
                 </a>
@@ -42,8 +39,25 @@
                 <a class="filterItem"  href="{% url 'sabject' %}">
                     Subject's Database
                 </a>
+
+                <a class="filterItem"  href="{% url 'get_students' %}">
+                    Student's Database
+                </a>
+
+            <hr><hr><hr><hr><hr><hr><hr><hr>
+
                 <a class="filterItem"  href="{% url 'takingsabject' %}">
                     Choose subjects
+                </a>
+                <a class="filterItem"  href="{% url 'myAssighments' %}">
+                    My Assignments
+                </a>
+
+
+            <hr><hr><hr><hr><hr><hr><hr><hr>
+
+                <a class="filterItem"  href="{% url 'addAssignment' %}">
+                    Add Assignment
                 </a>
           </div>
 

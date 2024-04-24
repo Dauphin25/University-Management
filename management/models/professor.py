@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 
 class Professor(models.Model):
@@ -18,6 +20,10 @@ class Professor(models.Model):
             email = f"{username}@tbc.edu.ge"
             self.university_email = email
         super().save(*args, **kwargs)
+        user = User.objects.create(username=(self.first_name + self.last_name))
+        user.password = make_password('User')
+        user.first_name = self.id
+        user.save()
 
     class Meta:
         db_table = 'professor'

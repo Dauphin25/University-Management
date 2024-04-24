@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centralDiv">
+<h1>გამარჯობა {{ request.user.username }}</h1>
+    ჩემი საგნები
+    <table>
+            <tr>
+                <th>title</th>
+                <th>assignment</th>
+            </tr>
+        {% for item in studentSubjects %}
+            <tr>
+                <td>{{ item.subject.title }}</td>
+                <td>{{ item.subject.title }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="createForm">
+        <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="დამატება">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

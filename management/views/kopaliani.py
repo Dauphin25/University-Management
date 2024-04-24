@@ -23,8 +23,13 @@ def index(request):
     professor = Professor.objects.all()
     for item in professor:
         print(item.first_name, item.id)
+
+    if request.user.is_authenticated:
+        username = request.user.username
+
     context = {
         'student': student,
+        'username':username,
     }
     return render(request, 'management/index.html', context)
 

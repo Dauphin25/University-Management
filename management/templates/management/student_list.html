@@ -13,6 +13,9 @@
                 <th>phone_number</th>
                 <th>born_date</th>
                 <th> student.gpa</th>
+                <th> faculty.title</th>
+                <th> faculty.description</th>
+                <th> faculty.is_active</th>
             </tr>
         {% for student in students %}
             <a href="{% url 'get_student' student.pk %}">
@@ -23,6 +26,10 @@
                     <td>{{ student.phone_number }}</td>
                     <td>{{ student.born_date }}</td>
                     <td>{{ student.gpa }}</td>
+                    <td>{{ student.current_semester }}</td>
+                    <td>{{ student.faculty.title }}</td>
+                    <td>{{ student.faculty.description }}</td>
+                    <td>{{ student.is_active }}</td>
                 </tr>
             </a>
         {% endfor %}

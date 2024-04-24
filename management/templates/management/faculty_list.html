@@ -15,7 +15,7 @@
         {% for faculty in faculties %}
             <a href="{% url 'get_faculty' faculty.pk %}">
                 <tr>
-                    <td>{{faculty.title  }}</td>
+                    <td>{{ faculty.title  }}</td>
                     <td>{{ faculty.founded_date }}</td>
                     <td>{{ faculty.description }}</td>
                     <td>{{ faculty.email }}</td>

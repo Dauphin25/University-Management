@@ -28,7 +28,7 @@ def get_faculties(request):
         if form.is_valid():
             form.save()
             return redirect('get_faculties')
-    return render(request, 'management/faculty_list.html', {'faculties': page, 'form': FacultyForm()})
+    return render(request, 'management/faculty_list.html', {'faculties': faculties, 'form': FacultyForm()})
 
 
 def get_student(request, pk):

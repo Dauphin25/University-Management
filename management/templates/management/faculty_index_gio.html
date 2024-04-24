@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .faculty {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .faculty h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .faculty p {
+            color: #666;
+            margin: 5px 0;
+        }
+        .faculty p strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Faculties</h1>
+        <div class="faculty-list">
+            {% for faculty in faculties %}
+            <div class="faculty">
+                <h2>{{ faculty.title }}</h2>
+                <p><strong>Founded Date:</strong> {{ faculty.founded_date }}</p>
+                <p><strong>Description:</strong> {{ faculty.description }}</p>
+                <p><strong>Email:</strong> {{ faculty.email }}</p>
+                <p><strong>Created at:</strong> {{ faculty.created_at }}</p>
+                <p><strong>Updated at:</strong> {{ faculty.updated_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -2,9 +2,15 @@
 {% load static %}
 
 {% block content %}
+    <div>
+    <p>თუ შეგყავთ სტუდენტის იუზერი ნიმუში user: HaaryPotter password: User</p>
+    <p>თუ შეგყავთ პროფესორი ნიმუში  user: SeverusSnape password: User</p>
+        </div>
+    <br>
+    <div>
     <form method="post">
         {% csrf_token %}
-        <div class="fon10 ">
+        <div style="padding: 100px">
             <div class="login_form__div">
                 <div class="register__span">
                     Log in
@@ -19,7 +25,7 @@
             </div>
         </div>
     </form>
-
+</div>
 <br>
 
 

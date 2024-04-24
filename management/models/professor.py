@@ -22,7 +22,7 @@ class Professor(models.Model):
         super().save(*args, **kwargs)
         user = User.objects.create(username=(self.first_name + self.last_name))
         user.password = make_password('User')
-        user.first_name = self.id
+        user.last_name = self.id
         user.save()
 
     class Meta:

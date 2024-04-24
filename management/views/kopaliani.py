@@ -94,7 +94,11 @@ def takingsabject(request):
             user_logout(request)
             return redirect('takingsabject')
         userId = request.user.first_name
-        count = StudentSubject.objects.filter(student__pk=userId).count()
+        try:
+            count = StudentSubject.objects.filter(student__pk=userId).count()
+        except:
+            user_logout(request)
+            return redirect('user_login')
         if request.method == 'POST':
             if count == 7:
                 # raise forms.ValidationError("7 საგანი უკვე არჩეულია")
@@ -119,8 +123,12 @@ def takingsabject(request):
             studentSubject = StudentSubject.objects.filter(student__pk=userId)
             form = StudentSubject_form()
 
-            # student = Student.objects.get(pk=userId)
-            student = get_object_or_404(Student, pk=userId)
+            try:
+                student = Student.objects.get(pk=userId)
+            except:
+                user_logout(request)
+                return redirect('index')
+            # student = get_object_or_404(Student, pk=userId)
 
             subjects = student.faculty.subject_set.all()
             form.fields['subject'].queryset = subjects
@@ -182,7 +190,7 @@ def addAssignment(request):
         if request.user.username == 'admin':
             user_logout(request)
             return redirect('addAssignment')
-        userId = request.user.first_name
+        userId = request.user.last_name
         # count = StudentSubject.objects.filter(student__pk=userId).count()
         if request.method == 'POST':
             form = Assignment_form(data=request.POST)
@@ -196,9 +204,14 @@ def addAssignment(request):
                 return HttpResponse("შეცდომა")
 
         else:
-            professorSubject = Assignment.objects.filter(professor__pk=userId)
-            form = Assignment_form()
-            professor = get_object_or_404(Professor, pk=userId)
+            try:
+                professorSubject = Assignment.objects.filter(professor__pk=userId)
+                form = Assignment_form()
+                professor = Professor.objects.get(pk=userId)
+            except:
+                user_logout(request)
+                return redirect('user_login')
+
             subjects = professor.subject_set.all()
             form.fields['subject'].queryset = subjects
             context = {
@@ -230,9 +243,14 @@ def myAssighments(request):
                 return HttpResponse("შეცდომა")
 
         else:
-            studentSubjects = StudentSubject.objects.filter(student__pk=userId)
+            try:
+                studentSubjects = StudentSubject.objects.filter(student__pk=userId)
+            except:
+                user_logout(request)
+                return redirect('user_login')
+            assignement = Assignment.objects.filter(subject__in=studentSubjects.values_list('subject', flat=True))
             context = {
-                'studentSubjects':studentSubjects
+                'assignement':assignement,
                 # 'studentSubject': studentSubject,
                 # 'form': form,
             }

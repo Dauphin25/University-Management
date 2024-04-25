@@ -18,7 +18,8 @@
     </style>
 <body>
     <h1>List of Students for Subject</h1>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post", enctype="multipart/form-data">
+        {% csrf_token %}
     <ul>
         {% for student in students %}
             <li>
@@ -27,8 +28,7 @@
             </li>
         {% endfor %}
     </ul>
-    {{ form }}
-    <button type="submit">Submit Attendance</button>
+    <button type="submit">Save</button>
     </form>
 </body>
 </html>

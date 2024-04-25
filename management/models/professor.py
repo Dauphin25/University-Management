@@ -1,13 +1,16 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 
 class Professor(models.Model):
-    first_name = models.CharField(max_length=255, verbose_name='First Name')
-    last_name = models.CharField(max_length=255, verbose_name='Last Name')
-    university_email = models.EmailField(verbose_name='University Email', blank=True)
-    phone_number = models.CharField(max_length=255, verbose_name='Phone Number')
-    faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name='Faculty', default=None)
+    first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
+    last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
+    university_email = models.EmailField(verbose_name=_('University Email'), blank=True)
+    phone_number = models.CharField(max_length=255, verbose_name=_('Phone Number'))
+    faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name=_('Faculty'), default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -17,6 +20,10 @@ class Professor(models.Model):
             email = f"{username}@tbc.edu.ge"
             self.university_email = email
         super().save(*args, **kwargs)
+        user = User.objects.create(username=(self.first_name + self.last_name))
+        user.password = make_password('User')
+        user.last_name = self.id
+        user.save()
 
     class Meta:
         db_table = 'professor'

@@ -1,135 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book Details</title>
-    <style>
-        body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-    }
+{% extends "base.html" %}
 
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+{% block content %}
+<div class="centralDiv">
+    საგნების ბაზა
+    <table>
+            <tr>
+                <th>title</th>
+                <th>faculty</th>
+                <th>number_of_credits</th>
+                <th>description</th>
+                <th>professor</th>
+                <th>syllabus</th>
+                <th>prerequisites</th>
+            </tr>
+        {% for item in sabject %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>
+                  {% for item in item.faculty.all %}
+                       {{ item.title }};
+                  {% endfor %}
+                </td>
+                <td>{{ item.number_of_credits }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.professor.first_name }} {{ item.professor.last_name }}</td>
+                <td>{{ item.syllabus }}</td>
+                <td>
+                {% for item in item.prerequisites.all %}
+                       {{ item.title }};
+                {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 
-    h1 {
-        color: #1a1a1a;
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 32px;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    li {
-        margin-bottom: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #007bff;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: #0056b3;
-    }
-
-    button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
-    form {
-        margin-top: 20px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 6px;
-        color: #333;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus,
-    select:focus,
-    textarea:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
-    textarea {
-        height: 150px;
-    }
-
-    input[type="submit"] {
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #218838;
-    }
-
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>Subject List</h1>
-    <div>
-        <ul>
-            {% for sabject in sabject %}
-            <li>
-                <a>{{ sabject.title}}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    <form method="post", enctype="multipart/form-data">
+    <div class="createForm">
+        <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
+        {{ form.as_p }}
+        <input type="submit" value="დამატება">
+        </form>
     </div>
 </div>
-</body>
-</html>
+
+{% endblock %}

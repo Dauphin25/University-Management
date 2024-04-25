@@ -2,9 +2,17 @@
 {% load static %}
 
 {% block content %}
+    <div>
+    <h1> სტუდენტის შექმნის დროს იქმნება იუზერიც რომლის  username: first_name+last_name და პაროლი 'User'</h1>
+    <p>თუ შეგყავთ სტუდენტის იუზერი ნიმუში user: HaaryPotter password: User</p>
+    <p>თუ შეგყავთ პროფესორი ნიმუში  user: SeverusSnape password: User</p>
+    <p>გაითვალისწინეთ რომ როცა პროფესორის გვერდიდან გადაგიხართ სტუდენტი გვერდზე ან პირიქით ხელახალი აუტორიზაცია არის საჭირო</p>
+        </div>
+    <br>
+    <div>
     <form method="post">
         {% csrf_token %}
-        <div class="fon10 ">
+        <div style="padding: 100px">
             <div class="login_form__div">
                 <div class="register__span">
                     Log in
@@ -19,7 +27,7 @@
             </div>
         </div>
     </form>
-
+</div>
 <br>
 
 

@@ -1,128 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Faculty List</title>
-    <style>
-        body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-    }
+{% extends "base.html" %}
 
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
 
-    h1 {
-        color: #1a1a1a;
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 32px;
-    }
 
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+{% block content %}
+    <div class="centralDiv">
+    faculty list
+    <table>
+            <tr>
+                <th>title</th>
+                <th>founded_date</th>
+                <th>description</th>
+                <th>university_email</th>
+            </tr>
+        {% for faculty in faculties %}
+            <a href="{% url 'get_faculty' faculty.pk %}">
+                <tr>
+                    <td>{{ faculty.title  }}</td>
+                    <td>{{ faculty.founded_date }}</td>
+                    <td>{{ faculty.description }}</td>
+                    <td>{{ faculty.email }}</td>
+                </tr>
+            </a>
+        {% endfor %}
+    </table>
 
-    li {
-        margin-bottom: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #007bff;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: #0056b3;
-    }
-
-    button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
-    form {
-        margin-top: 20px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 6px;
-        color: #333;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus,
-    select:focus,
-    textarea:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
-    textarea {
-        height: 150px;
-    }
-
-    input[type="submit"] {
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #218838;
-    }
-
-    </style>
-</head>
 <body>
 <div class="container">
     <h1>Faculty List</h1>
     <div>
         <ul>
-            {% for faculty in faculties %}
-            <li>
-                <a href="{% url 'get_faculty' faculty.pk %}">{{ faculty.title }}</a>
-            </li>
-            {% endfor %}
+
         </ul>
     <form method="post", enctype="multipart/form-data">
         {% csrf_token %}
@@ -141,5 +48,6 @@
         </ul>
     </div>
 </div>
-</body>
-</html>
+
+
+{% endblock %}

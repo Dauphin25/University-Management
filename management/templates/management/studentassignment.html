@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centralDiv">
+<h1>გამარჯობა {{ request.user.username }}</h1>
+    ჩემი assignement
+    <table>
+            <tr>
+                <th>name</th>
+                <th>text</th>
+                <th>professor</th>
+
+            </tr>
+        {% for item in assignement %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.text }}</td>
+                <td>{{ item.professor.first_name }} {{ item.professor.last_name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}
+

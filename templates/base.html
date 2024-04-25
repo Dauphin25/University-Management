@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'giostyle.css' %}">
     <title>Document</title>
 </head>
 <header>
@@ -31,17 +32,32 @@
                 <a class="filterItem"  href="{% url 'professor' %}">
                     Profesor's Database
                 </a>
-                <a class="filterItem"  href="{% url 'get_students' %}">
-                    Student's Database
-                </a>
                 <a class="filterItem"  href="{% url 'get_faculties' %}">
                     Course's Database
                 </a>
+
                 <a class="filterItem"  href="{% url 'sabject' %}">
                     Subject's Database
                 </a>
+
+                <a class="filterItem"  href="{% url 'get_students' %}">
+                    Student's Database
+                </a>
+
+            <hr><hr><hr><hr><hr><hr><hr><hr>
+
                 <a class="filterItem"  href="{% url 'takingsabject' %}">
-                    Choose subjects
+                    Choose subjects  (student page)
+                </a>
+                <a class="filterItem"  href="{% url 'myAssighments' %}">
+                    My Assignments (student page)
+                </a>
+
+
+            <hr><hr><hr><hr><hr><hr><hr><hr>
+
+                <a class="filterItem"  href="{% url 'addAssignment' %}">
+                    Add Assignment (professor page)
                 </a>
           </div>
 

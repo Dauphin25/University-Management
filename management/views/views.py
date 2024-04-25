@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, Page
 
-from management.forms import StudentForm, FacultyForm
+from management.forms import StudentForm, FacultyForm, AttendanceForm
 from management.models import Subject
+from management.models.attendance import Attendance
 from management.models.faculty import Faculty
 from management.models.student import Student
 from django.shortcuts import render
-from management.models.taking_subjects import StudentSubject
-
 
 def get_students(request):
     students = Student.objects.all()
@@ -64,8 +63,14 @@ def subject_list(request):
 
 
 def subject_students(request, subject_id):
-    student_subjects = StudentSubject.objects.filter(subject_id=subject_id)
-
+    subject = get_object_or_404(Subject, pk=subject_id)
+    student_subjects = Attendance.objects.filter(subject_id=subject_id)
     students = [student_subject.student for student_subject in student_subjects]
+    if request.method == 'POST':
+        form = AttendanceForm(request.POST)
+        if form.is_valid():
+            return redirect('subject_students')
+    return render(request, 'management/subject_students.html',
+                  {'subject': subject, 'students': students, 'form': AttendanceForm})
 
-    return render(request, 'management/subject_students.html', {'students': students})
+

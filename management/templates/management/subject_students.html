@@ -18,6 +18,7 @@
     </style>
 <body>
     <h1>List of Students for Subject</h1>
+    <form method="post" enctype="multipart/form-data">
     <ul>
         {% for student in students %}
             <li>
@@ -26,6 +27,8 @@
             </li>
         {% endfor %}
     </ul>
-        <button type="submit">Submit Attendance</button>
+    {{ form }}
+    <button type="submit">Submit Attendance</button>
+    </form>
 </body>
 </html>

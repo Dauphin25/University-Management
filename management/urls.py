@@ -16,5 +16,5 @@ urlpatterns = [
     path('addAssignment/', addAssignment, name='addAssignment'),
     path('myAssighments/', myAssighments, name='myAssighments'),
     path('subject_list/', subject_list, name='subject_list'),
-    path('subject_list/<int:subject_id>/', subject_students, name='subject_students'),
+    path('subject_list/<int:subject_id>/', subject_students, name='subject_students')
 ]

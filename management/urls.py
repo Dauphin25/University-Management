@@ -14,6 +14,6 @@ urlpatterns = [
     path('user_logout/', user_logout, name='user_logout'),
     path('takingsabject/', takingsabject, name='takingsabject'),
     path('addAssignment/', addAssignment, name='addAssignment'),
-    path('myAssighments/', myAssighments, name='myAssighments'),
-
+    path('studentassignment/', studentassignment, name='studentassignment'),
+    path('submitAssignment/<int:assignment_id>/', submitAssignment, name='submitAssignment')
 ]

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, Page
 
 from management.forms import StudentForm, FacultyForm
+from management.models import Subject
 from management.models.faculty import Faculty
 from management.models.student import Student
 from django.shortcuts import render
@@ -57,3 +58,14 @@ def get_faculty(request, pk):
     return render(request, 'management/faculty_index.html', {'faculties': [faculty]})
 
 
+def subject_list(request):
+    subjects = Subject.objects.all()
+    return render(request, 'management/subject_list.html', {'subjects': subjects})
+
+
+def subject_students(request, subject_id):
+    student_subjects = StudentSubject.objects.filter(subject_id=subject_id)
+
+    students = [student_subject.student for student_subject in student_subjects]
+
+    return render(request, 'management/subject_students.html', {'students': students})

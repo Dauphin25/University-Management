@@ -4,6 +4,8 @@ from django.core.paginator import Paginator, Page
 from management.forms import StudentForm, FacultyForm
 from management.models.faculty import Faculty
 from management.models.student import Student
+from django.shortcuts import render
+from management.models.taking_subjects import StudentSubject
 
 
 def get_students(request):
@@ -53,3 +55,5 @@ def get_student(request, pk):
 def get_faculty(request, pk):
     faculty = get_object_or_404(Faculty, id=pk)
     return render(request, 'management/faculty_index.html', {'faculties': [faculty]})
+
+

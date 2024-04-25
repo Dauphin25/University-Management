@@ -11,6 +11,7 @@ from management.models.subject_history import SubjectHistory
 from management.models.taking_subjects import  StudentSubject
 from management.models.assignment import Assignment
 from management.models.studentassignment import StudentAssignment
+from management.models.submitassignment import SubmitAssignment
 
 
 # Register your models here.
@@ -72,16 +73,22 @@ class SubjectHistoryAdmin(admin.ModelAdmin):
     list_per_page = 20
     ordering = ('student', 'subject')
 
+
 @admin.register(StudentSubject)
 class StudentSubjectAdmin(admin.ModelAdmin):
     list_display = ('student', 'subject')
+
 
 @admin.register(Assignment)
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'subject','professor')
 
 
-
 @admin.register(StudentAssignment)
 class StudentAssignmentAdmin(admin.ModelAdmin):
     list_display = ('student', 'assignments','text')
+
+
+@admin.register(SubmitAssignment)
+class SubmitAssignmentAdmin(admin.ModelAdmin):
+    list_display = ('student', 'text','assignment','assignment')

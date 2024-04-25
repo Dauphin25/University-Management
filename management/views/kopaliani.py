@@ -15,6 +15,8 @@ from django.forms import fields
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from management.models.submitassignment import *
+
 from django.shortcuts import get_object_or_404
 
 
@@ -232,7 +234,7 @@ def addAssignment(request):
 
 
 
-def myAssighments(request):
+def studentassignment(request):
     if request.user.is_authenticated:
         if request.user.username == 'admin':
             user_logout(request)
@@ -264,4 +266,52 @@ def myAssighments(request):
     else:
         return redirect('user_login')
     return render(request, 'management/studentassignment.html', context)
+
+
+
+class SubmitAssignment_form(ModelForm):
+    class Meta:
+        model = SubmitAssignment
+        fields = ('text',)
+
+
+def submitAssignment(request, assignment_id):
+    if request.user.is_authenticated:
+        if request.user.username == 'admin':
+            user_logout(request)
+            return redirect('index')
+        userId = request.user.first_name
+        if request.method == 'POST':
+            form = SubmitAssignment_form(data=request.POST)
+            if form.is_valid():
+                a = form.save(commit=False)
+                a.student = Student.objects.get(pk=userId)
+                a.assignment = Assignment.objects.get(pk=assignment_id)
+                form.save()
+                return redirect('studentassignment')
+            else:
+                return HttpResponse("შეცდომა")
+
+        else:
+            assignement = Assignment.objects.get(pk=assignment_id)
+            # subjects = student.faculty.subject_set.all()
+
+            try:
+                submitAssignment_submited = SubmitAssignment.objects.get(student_id=userId, assignment_id=assignment_id).text
+            except:
+                submitAssignment_submited = None
+            # print(submitAssignment_submited.text)
+
+            form = SubmitAssignment_form
+            context = {
+                'assignement':assignement,
+                'submitAssignment_submited':submitAssignment_submited,
+                'form': form,
+            }
+    else:
+        return redirect('user_login')
+    return render(request, 'management/submitAssignment.html', context)
+
+
+
 

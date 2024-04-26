@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centralDiv">
+    დასწრება
+    <table>
+            <tr>
+                <th>student</th>
+                <th>subject</th>
+                <th>date</th>
+                <th>status</th>
+            </tr>
+        {% for attendance in attendances %}
+            <tr>
+                    <td>{{ attendance.student }}</td>
+                    <td>{{ attendance.subject }}</td>
+                    <td>{{ attendance.date }}</td>
+                    <td>{{ attendance.status }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

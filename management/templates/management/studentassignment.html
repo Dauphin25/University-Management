@@ -6,14 +6,14 @@
     ჩემი assignement
     <table>
             <tr>
-                <th>name</th>
+                <th>assignment name</th>
                 <th>text</th>
                 <th>professor</th>
 
             </tr>
         {% for item in assignement %}
             <tr>
-                <td>{{ item.name }}</td>
+                <td ><a class="filterItem" href="{% url 'submitAssignment' item.pk %}">{{ item.name }} </a></td>
                 <td>{{ item.text }}</td>
                 <td>{{ item.professor.first_name }} {{ item.professor.last_name }}</td>
             </tr>

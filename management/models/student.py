@@ -25,20 +25,35 @@ class Student(models.Model):
     current_semester = models.IntegerField(verbose_name=_('Current Semester'), choices=choices.SEMESTER_CHOICES, default=0)
     faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name=_('Faculty'), default=None)
     is_active = models.BooleanField(default=True)
-    #image = models.ImageField(upload_to='mediafiles/', null=True)
+    image = models.ImageField(upload_to='mediafiles/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # def save(self, *args, **kwargs):
+    #     if not self.email:
+    #         username = slugify(self.first_name + '-' + self.last_name)
+    #         email = f"{username}@tbc.edu.ge"
+    #         self.email = email
+    #     super().save(*args, **kwargs)
+    #     user = User.objects.create(username=(self.first_name + self.last_name))
+    #     user.password = make_password('User')
+    #     user.first_name = self.id
+    #     user.save()
+
     def save(self, *args, **kwargs):
-        if not self.email:
-            username = slugify(self.first_name + '-' + self.last_name)
-            email = f"{username}@tbc.edu.ge"
-            self.email = email
+        print('save')
         super().save(*args, **kwargs)
-        user = User.objects.create(username=(self.first_name + self.last_name))
-        user.password = make_password('User')
-        user.first_name = self.id
-        user.save()
+        allUsers = User.objects.all()
+        allUserIds = []
+        for item in allUsers:
+            allUserIds.append(item.first_name)
+        print(str(self.id), allUserIds )
+        if str(self.id) not in allUserIds:
+            print('axalia')
+            user = User.objects.create(username=(self.first_name + self.last_name))
+            user.password = make_password('User')
+            user.first_name = self.id
+            user.save()
 
     class Meta:
         db_table = 'student'

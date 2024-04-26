@@ -7,6 +7,7 @@
     student list
     <table>
             <tr>
+                <th>photo</th>
                 <th>first_name</th>
                 <th>last_name</th>
                 <th>university_email</th>
@@ -20,7 +21,8 @@
         {% for student in students %}
             <a href="{% url 'get_student' student.pk %}">
                 <tr>
-                    <td>{{ student.first_name }}</td>
+                    <td><img style="width: 150px; height: 200px" src="{{ student.image.url }}">
+              </td>
                     <td>{{ student.last_name }}</td>
                     <td>{{ student.email }}</td>
                     <td>{{ student.phone_number }}</td>

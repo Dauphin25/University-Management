@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centralDiv">
+ <table>
+            <tr>
+                <th>assignement.name</th>
+                <th>assignement.text</th>
+                <th>assignement.professor</th>
+                <th>assignement.subject</th>
+            </tr>
+            <tr>
+                <td>{{ assignement.name }}</td>
+                <td>{{ assignement.text }}</td>
+                <td>{{ assignement.professor }}</td>
+                <td>{{ assignement.subject }}</td>
+            </tr>
+    </table>
+
+    {% if submitAssignment_submited %}
+
+<textarea>{{ submitAssignment_submited }}</textarea>~
+
+        <h3>პასუხი გაგზავნილია</h3>
+    {%  else %}
+    <div class="createForm">
+        <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="გაგზავნა">
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+

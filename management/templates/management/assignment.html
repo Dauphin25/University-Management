@@ -3,22 +3,25 @@
 {% block content %}
 <div class="centralDiv">
 <h1>გამარჯობა {{ request.user.username }}</h1>
-    <p>დაველებების შექმნა</p>
+    <h3>შექმნილი დავალებები შექმნა</h3>
     <table>
             <tr>
                 <th>name</th>
                 <th>text</th>
                 <th>subject</th>
+                <th>detailes</th>
             </tr>
         {% for item in professorSubject %}
             <tr>
-                <td>{{ item.name }}</td>
+                <td> {{ item.name }}</td>
                 <td>{{ item.text }}</td>
                 <td>{{ item.subject.title }}</td>
+            <td><a class="filterItem" href="{% url 'profAssignment' item.pk %}"> მიღებული პასუხები</a></td>
             </tr>
         {% endfor %}
     </table>
-
+    <br>
+    <h3> ახალი დავალებები შექმნა</h3>
     <div class="createForm">
         <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}

@@ -314,4 +314,21 @@ def submitAssignment(request, assignment_id):
 
 
 
+def profAssignment(request, assignment_id):
+    if request.user.is_authenticated:
+        if request.user.username == 'admin':
+            user_logout(request)
+            return redirect('index')
+        userId = request.user.first_name
+        submitAssignment_submited = SubmitAssignment.objects.filter(assignment__pk=assignment_id)
+
+
+        context = {
+            # 'assignement':assignement,
+            'submitAssignment_submited':submitAssignment_submited,
+            # 'form': form,
+        }
+    else:
+        return redirect('user_login')
+    return render(request, 'management/profAssignment.html', context)
 

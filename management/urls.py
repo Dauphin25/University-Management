@@ -15,5 +15,7 @@ urlpatterns = [
     path('takingsabject/', takingsabject, name='takingsabject'),
     path('addAssignment/', addAssignment, name='addAssignment'),
     path('studentassignment/', studentassignment, name='studentassignment'),
-    path('submitAssignment/<int:assignment_id>/', submitAssignment, name='submitAssignment')
+    path('submitAssignment/<int:assignment_id>/', submitAssignment, name='submitAssignment'),
+    path('profAssignment/<int:assignment_id>/', profAssignment, name='profAssignment')
+
 ]

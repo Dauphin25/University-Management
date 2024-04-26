@@ -12,7 +12,11 @@ from management.models.subject_history import SubjectHistory
 from management.models.taking_subjects import  StudentSubject
 from management.models.assignment import Assignment
 from management.models.studentassignment import StudentAssignment
+
 from management.models.submitassignment import SubmitAssignment
+
+from management.models.attendance import Attendance
+
 
 
 # Register your models here.
@@ -90,6 +94,7 @@ class StudentAssignmentAdmin(admin.ModelAdmin):
     list_display = ('student', 'assignments','text')
 
 
+
 @admin.register(SubmitAssignment)
 class SubmitAssignmentAdmin(admin.ModelAdmin):
     list_display = ('student', 'text','assignment','assignment')
@@ -98,3 +103,8 @@ class SubmitAssignmentAdmin(admin.ModelAdmin):
 @admin.register(Attendance)
 class Attendance(admin.ModelAdmin):
     list_display = ('student', 'subject', 'date', 'status')
+
+@admin.register(Attendance)
+class AttendanceAdmin(admin.ModelAdmin):
+    list_display = ('student', 'subject','date','status')
+

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.utils.crypto import get_random_string
 
+from management.models.attendance import Attendance
 from management.models.faculty import Faculty
 from management.models.professor import Professor
 from management.models.student import Student
@@ -92,3 +93,8 @@ class StudentAssignmentAdmin(admin.ModelAdmin):
 @admin.register(SubmitAssignment)
 class SubmitAssignmentAdmin(admin.ModelAdmin):
     list_display = ('student', 'text','assignment','assignment')
+
+
+@admin.register(Attendance)
+class Attendance(admin.ModelAdmin):
+    list_display = ('student', 'subject', 'date', 'status')

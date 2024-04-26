@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from .student import Student
 from .subject import Subject
@@ -8,7 +9,6 @@ class Attendance(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='subject')
     date = models.DateField(verbose_name='date')
     status = models.BooleanField(default=False)
-
     class Meta:
         db_table = 'attendance'
         verbose_name = 'Attendance'
@@ -16,3 +16,8 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f'{self.student} - {self.subject} - {self.date}'
+
+    def save(self, *args, **kwargs):
+        if not self.date:
+            self.date = datetime.date.today()
+        super().save(*args, **kwargs)

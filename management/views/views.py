@@ -69,16 +69,14 @@ def subject_students(request, subject_id):
     subject = get_object_or_404(Subject, pk=subject_id)
     student_subjects = StudentSubject.objects.filter(subject_id=subject_id)
     students = [student_subject.student for student_subject in student_subjects]
+
     if request.method == 'POST':
         form = AttendanceForm(request.POST)
         if form.is_valid():
-            date = form.cleaned_data['date']
-            marked_students = form.cleaned_data.get('student_ids', [])
-            for student_id in marked_students:
-                student = get_object_or_404(Student, pk=student_id)
-                Attendance.objects.create(student=student, subject=subject, date=date)
+            form.instance.subject = subject
+            form.save()
             return redirect('subject_list')
-    return render(request, 'management/subject_students.html',
-                  {'subject': subject, 'students': students, 'form': AttendanceForm})
+    else:
+        form = AttendanceForm()
 
-
+    return render(request, 'management/subject_students.html', {'subject': subject, 'students': students, 'form': form})

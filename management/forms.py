@@ -21,8 +21,5 @@ class FacultyForm(ModelForm):
 class AttendanceForm(ModelForm):
     class Meta:
         model = Attendance
-        fields = '__all__'
-        widgets = {
-            'date': DateInput(attrs={'type': 'date'}),
-            'attendance_time': DateTimeInput(attrs={'type': 'datetime-local'})
-        }
+        fields = ['student', 'status']
+

@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students for Subject</title>
 </head>
 <style>
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            display: flex;
-            align-items: center;
-        }
-        input[type="checkbox"] {
-            margin-right: 10px;
-        }
-    </style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        display: flex;
+        align-items: center;
+    }
+    input[type="checkbox"] {
+        margin-right: 10px;
+    }
+</style>
 <body>
-    <h1>List of Students for Subject</h1>
-    <form method="post", enctype="multipart/form-data">
+    <h1>List of Students for Subject - {{ subject.title }}</h1>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-    <ul>
-        {% for student in students %}
-            <li>
-                <input type="checkbox" id="student_{{ student.id }}" name="student_ids" value="{{ student.id }}">
-                <label for="student_{{ student.id }}">{{ student.first_name }} {{ student.last_name }}</label>
-            </li>
-        {% endfor %}
-    </ul>
-    <button type="submit">Save</button>
+        {{ form }}
+        <button type="submit">Save</button>
     </form>
 </body>
 </html>

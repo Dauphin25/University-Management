@@ -20,5 +20,6 @@ urlpatterns = [
 
     # path('myAssighments/', myAssighments, name='myAssighments'),
     path('subject_list/', subject_list, name='subject_list'),
-    path('subject_list/<int:subject_id>/', subject_students, name='subject_students')
+    path('subject_list/<int:subject_id>/', subject_students, name='subject_students'),
+    path('get_attendance/', get_attendance, name='get_attendance')
 ]

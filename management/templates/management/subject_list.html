@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5 mb-4">List of Subjects</h1>
+        <h1 class="mt-5 mb-4">საგნების სია</h1>
         <ul class="list-group">
             {% for subject in subjects %}
                 <li class="list-group-item"><a href="{% url 'subject_students' subject.id %}">{{ subject.title }}</a></li>

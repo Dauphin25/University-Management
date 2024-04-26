@@ -1,6 +1,6 @@
 from django.urls import path
 from .views.kopaliani import *
-from .views.views import get_students, get_student, get_faculties, get_faculty
+from .views.views import *
 
 urlpatterns = [
     path('', index, name='index'),

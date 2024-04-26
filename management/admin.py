@@ -104,7 +104,4 @@ class SubmitAssignmentAdmin(admin.ModelAdmin):
 class Attendance(admin.ModelAdmin):
     list_display = ('student', 'subject', 'date', 'status')
 
-@admin.register(Attendance)
-class AttendanceAdmin(admin.ModelAdmin):
-    list_display = ('student', 'subject','date','status')
 

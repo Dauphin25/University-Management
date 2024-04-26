@@ -1,9 +1,12 @@
 from django.urls import path
+
+from .models import attendance
 from .views.kopaliani import *
 from .views.views import *
 
 urlpatterns = [
     path('', index, name='index'),
+    path('get_attendance/', get_attendance, name='get_attendance'),
     path('professor/', professor, name='professor'),
     path('sabject/', sabject, name='sabject'),
     path('students/', get_students, name='get_students'),

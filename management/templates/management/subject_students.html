@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students for Subject</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
 </head>
-<style>
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-    li {
-        display: flex;
-        align-items: center;
-    }
-    input[type="checkbox"] {
-        margin-right: 10px;
-    }
-</style>
 <body>
-    <h1>List of Students for Subject - {{ subject.title }}</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
+    <div class="container">
+        <h1 class="mt-5 mb-4">List of Students for Subject - {{ subject.title }}</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                        {{ form }}
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
 </body>
 </html>

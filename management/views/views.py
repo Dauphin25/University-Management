@@ -11,6 +11,7 @@ from management.models.student import Student
 from django.shortcuts import render
 from management.models.taking_subjects import StudentSubject
 
+
 def get_students(request):
     students = Student.objects.all()
     paginator = Paginator(students, per_page=4)
@@ -80,3 +81,9 @@ def subject_students(request, subject_id):
         form = AttendanceForm()
 
     return render(request, 'management/subject_students.html', {'subject': subject, 'students': students, 'form': form})
+def get_attendance(request):
+    attendance = Attendance.objects.all()
+    context = {
+        'attendances': attendance,
+    }
+    return render(request, 'management/attendance.html', context)

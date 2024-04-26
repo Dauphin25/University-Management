@@ -29,35 +29,36 @@
         <div class="leftDiv">
 
         <div class="filterDivs">
+
+                <a class="filterItem"  href="{% url 'get_students' %}">
+                    სტუდენტების ბაზა
+                </a>
+
                 <a class="filterItem"  href="{% url 'professor' %}">
-                    Profesor's Database
+                    პროფესორების ბაზა
                 </a>
                 <a class="filterItem"  href="{% url 'get_faculties' %}">
-                    Course's Database
+                    ფაკულტეტების ბაზა
                 </a>
 
                 <a class="filterItem"  href="{% url 'sabject' %}">
-                    Subject's Database
-                </a>
-
-                <a class="filterItem"  href="{% url 'get_students' %}">
-                    Student's Database
+                    საგნების ბაზა
                 </a>
 
             <hr><hr><hr><hr><hr><hr><hr><hr>
 
                 <a class="filterItem"  href="{% url 'takingsabject' %}">
-                    Choose subjects  (student page)
+                    საგნის არჩევა (სტუდენტის გვერდი)
                 </a>
                 <a class="filterItem"  href="{% url 'studentassignment' %}">
-                    My Assignments (student page)
+                    ჩემი დავალებები (სტუდენტის გვერდი)
                 </a>
 
 
             <hr><hr><hr><hr><hr><hr><hr><hr>
 
                 <a class="filterItem"  href="{% url 'addAssignment' %}">
-                    Add Assignment (professor page)
+                    დავალებები (პროფესორის გვერდი)
                 </a>
           </div>
 

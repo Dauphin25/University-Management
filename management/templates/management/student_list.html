@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="centralDiv">
-    student list
+    <h3>სტუდენტების ბაზა</h3>
     <table>
             <tr>
                 <th>photo</th>
@@ -23,6 +23,7 @@
                 <tr>
                     <td><img style="width: 150px; height: 200px" src="{{ student.image.url }}">
               </td>
+                    <td>{{ student.first_name }}</td>
                     <td>{{ student.last_name }}</td>
                     <td>{{ student.email }}</td>
                     <td>{{ student.phone_number }}</td>
@@ -37,7 +38,11 @@
         {% endfor %}
     </table>
 
+            <br>
+        <hr>
+            <br>
 
+    <h3>ახალი სტუდენტის შექმნა</h3>
     <div class="createForm">
         <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}

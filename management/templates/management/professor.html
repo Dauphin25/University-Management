@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="centralDiv">
-    professor base
+    <h3>პროფესორების ბაზა</h3>
     <table>
             <tr>
                 <th>first_name</th>
@@ -24,7 +24,10 @@
         {% endfor %}
     </table>
 
-
+        <br>
+        <hr>
+        <br>
+    <h3>ახალი პროფესორის</h3>
     <div class="createForm">
         <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="centralDiv">
-    საგნების ბაზა
+    <h3>საგნების ბაზა</h3>
     <table>
             <tr>
                 <th>title</th>
@@ -11,7 +11,6 @@
                 <th>description</th>
                 <th>professor</th>
                 <th>syllabus</th>
-                <th>prerequisites</th>
             </tr>
         {% for item in sabject %}
             <tr>
@@ -25,15 +24,14 @@
                 <td>{{ item.description }}</td>
                 <td>{{ item.professor.first_name }} {{ item.professor.last_name }}</td>
                 <td>{{ item.syllabus }}</td>
-                <td>
-                {% for item in item.prerequisites.all %}
-                       {{ item.title }};
-                {% endfor %}
-                </td>
             </tr>
         {% endfor %}
     </table>
+    <br>
+    <hr>
+    <br>
 
+    <h3>ახალი საგნის შექმნა</h3>
     <div class="createForm">
         <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}

@@ -1,12 +1,11 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 
 class Faculty(models.Model):
-    title = models.CharField(max_length=255, verbose_name=_('Faculty Title'))
-    founded_date = models.DateField(verbose_name=_('Founded Date'))
-    description = models.TextField(verbose_name=_('Description'))
-    email = models.EmailField(verbose_name=_('Email'), blank=True)
+    title = models.CharField(max_length=255, verbose_name='Title')
+    founded_date = models.DateField(verbose_name='Founded Date')
+    description = models.TextField(verbose_name='Description')
+    email = models.EmailField(verbose_name='Email', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

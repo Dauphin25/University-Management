@@ -1,10 +1,15 @@
+from datetime import datetime
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, Page
 
-from management.forms import StudentForm, FacultyForm
+from management.forms import StudentForm, FacultyForm, AttendanceForm
+from management.models import Subject
+from management.models.attendance import Attendance
 from management.models.faculty import Faculty
 from management.models.student import Student
-
+from django.shortcuts import render
+from management.models.taking_subjects import StudentSubject
 
 def get_students(request):
     students = Student.objects.all()
@@ -42,7 +47,7 @@ def get_faculties(request):
         if form.is_valid():
             form.save()
             return redirect('get_faculties')
-    return render(request, 'management/faculty_list.html', {'faculties': page, 'form': FacultyForm()})
+    return render(request, 'management/faculty_list.html', {'faculties': faculties, 'form': FacultyForm()})
 
 
 def get_student(request, pk):
@@ -53,3 +58,27 @@ def get_student(request, pk):
 def get_faculty(request, pk):
     faculty = get_object_or_404(Faculty, id=pk)
     return render(request, 'management/faculty_index.html', {'faculties': [faculty]})
+
+
+def subject_list(request):
+    subjects = Subject.objects.all()
+    return render(request, 'management/subject_list.html', {'subjects': subjects})
+
+
+def subject_students(request, subject_id):
+    subject = get_object_or_404(Subject, pk=subject_id)
+    student_subjects = StudentSubject.objects.filter(subject_id=subject_id)
+    students = [student_subject.student for student_subject in student_subjects]
+    if request.method == 'POST':
+        form = AttendanceForm(request.POST)
+        if form.is_valid():
+            date = form.cleaned_data['date']
+            marked_students = form.cleaned_data.get('student_ids', [])
+            for student_id in marked_students:
+                student = get_object_or_404(Student, pk=student_id)
+                Attendance.objects.create(student=student, subject=subject, date=date)
+            return redirect('subject_list')
+    return render(request, 'management/subject_students.html',
+                  {'subject': subject, 'students': students, 'form': AttendanceForm})
+
+

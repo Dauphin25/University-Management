@@ -10,9 +10,9 @@ class Subject(models.Model):
     number_of_credits = models.IntegerField(verbose_name=_('Number of Credits'), default=0)
     description = models.TextField(verbose_name=_('Description'))
     professor = models.ForeignKey('management.Professor', on_delete=models.CASCADE, verbose_name=_('Professor'), default=None)
-    syllabus = models.FileField(upload_to='syllabus/', verbose_name=_('Syllabus'), blank=True, null=True,
-                                validators=[FileExtensionValidator(['pdf'])])
-    prerequisites = models.ManyToManyField('self', blank=True, verbose_name='Prerequisites')
+    # syllabus = models.FileField(upload_to='syllabus/', verbose_name=_('Syllabus'), blank=True, null=True,
+    #                             validators=[FileExtensionValidator(['pdf'])])
+    # prerequisites = models.ManyToManyField('self', blank=True, verbose_name='Prerequisites')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,5 +1,4 @@
 from django.urls import path
-from management.views.kopaliani import *
 from management.views.views import *
 
 urlpatterns = [
@@ -17,8 +16,9 @@ urlpatterns = [
     path('studentassignment/', studentassignment, name='studentassignment'),
     path('submitAssignment/<int:assignment_id>/', submitAssignment, name='submitAssignment'),
     path('profAssignment/<int:assignment_id>/', profAssignment, name='profAssignment'),
-
     # path('myAssighments/', myAssighments, name='myAssighments'),
     path('subject_list/', subject_list, name='subject_list'),
-    path('subject_list/<int:subject_id>/', subject_students, name='subject_students')
+    path('subject_list/<int:subject_id>/', subject_students, name='subject_students'),
+    path('adddata', adddata, name='adddata'),
+    path('removedata', removedata, name='removedata'),
 ]

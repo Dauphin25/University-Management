@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Student(models.Model):
+    faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name=_('Faculty'), default=None)
     first_name = models.CharField(max_length=255, verbose_name=_('First Name'))
     last_name = models.CharField(max_length=255, verbose_name=_('Last Name'))
     email = models.EmailField(verbose_name=_('Email'), blank=True)
@@ -23,7 +24,6 @@ class Student(models.Model):
         validators=[MinValueValidator(0.0), MaxValueValidator(4.0)]
     )
     current_semester = models.IntegerField(verbose_name=_('Current Semester'), choices=choices.SEMESTER_CHOICES, default=0)
-    faculty = models.ForeignKey('management.Faculty', on_delete=models.CASCADE, verbose_name=_('Faculty'), default=None)
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='mediafiles/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -21,8 +21,11 @@
         {% for student in students %}
             <a href="{% url 'get_student' student.pk %}">
                 <tr>
-                    <td><img style="width: 150px; height: 200px" src="{{ student.image.url }}">
-              </td>
+                    <td>
+                        {% if student.image %}
+                        <img style="width: 150px; height: 200px" src="{{ student.image.url }}">
+                        {% endif %}
+                    </td>
                     <td>{{ student.first_name }}</td>
                     <td>{{ student.last_name }}</td>
                     <td>{{ student.email }}</td>

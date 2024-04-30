@@ -25,7 +25,7 @@ class Student(models.Model):
     )
     current_semester = models.IntegerField(verbose_name=_('Current Semester'), choices=choices.SEMESTER_CHOICES, default=0)
     is_active = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='mediafiles/', null=True)
+    #image = models.ImageField(upload_to='mediafiles/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -21,4 +21,6 @@ urlpatterns = [
     path('subject_list/<int:subject_id>/', subject_students, name='subject_students'),
     path('adddata', adddata, name='adddata'),
     path('removedata', removedata, name='removedata'),
+    path('subject_list/<int:subject_id>/', subject_students, name='subject_students'),
+    path('get_attendance/', get_attendance, name='get_attendance')
 ]
